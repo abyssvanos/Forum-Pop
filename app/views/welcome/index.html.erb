@@ -1,0 +1,17 @@
+<h1>Welcome to Pop Forum!</h1>
+
+<li style="color:blue">Current normal users:</li><br><br>
+<% @users.each do |f| %>
+	<% if f.admin == false %>
+		<li> <%= f.email %>
+	<% end %>
+<% end %>
+
+<hr>
+
+<li style="color:blue">Current administraters:</li><br><br>
+<% @users.each do |f| %>
+	<% if f.admin == true %>
+		<li> <%= f.email %>
+	<% end %>
+<% end %>
