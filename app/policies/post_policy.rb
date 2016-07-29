@@ -2,22 +2,26 @@ class PostPolicy < ApplicationPolicy
 
 	attr_reader :user, :post
 	
-	def initialize(user, post)
-		@user = user
+	def initialize(current_user, post)
+		@current_user = current_user
 		@post = post
 	end
 
 	def edit?
-		user == post.user
+		@current_user == post.user
+	end
+
+	def new?
+		@current_user
 	end
 
 	def create?
-		user.id == post.user_id
+		@current_user == post.user
 	end
 
 
 	def destroy?
-		user == post.user || user.admin == true
+		@current_user == post.user || current_user.admin == true
 	end
 
 end
